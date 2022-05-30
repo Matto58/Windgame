@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windgame - clicker game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+    <body>
+        <center>
+            <div id="difficultyPick"> 
+                <h1>Choose difficulty:</h1>
+                <button onclick="difficulty = difficultyScale.easy">Easy</button>
+                <button onclick="difficulty = difficultyScale.medium">Medium</button>
+                <button onclick="difficulty = difficultyScale.hard">Hard</button>
+                <button onclick="difficulty = difficultyScale.extreme">Extreme</button>
+                <button onclick="difficulty = difficultyScale.impossible">Impossible</button>
+                <br><br>
+                <button onclick="start()">Start</button>
+                <br><br>
+            </div>
+            <h1>Windgame 1.00</h1>
+            <p id="difficulty">Difficulty: Medium</p>
+            <h2 id="money">0$</h2>
+            <p id="currentMult">0$/s</p>
+            <p id="moneyTotal">All time: 0$</p>
+            <p id="prestiges">0 prestiges</p>
+            <button id="prestige">Prestige (100000$)</button><br>
+            <button id="click" style="font-size: 24px">Click me!</button>
+            <br><br>
+            <table>
+                <center>
+                    <tr>
+                        <td>
+                            <center>
+                                <h2>Artist (1$/s)</h2>
+                                <p><i>Draws banknotes.</i></p>
+                                <p id="artist">0 owned</p>
+                                <button id="price-artist" onclick="purchase('artist')">25$</button>
+                            </center>
+                        </td> 
+                        <td>
+                            <center>
+                                <h2>Farm (2$/s)</h2>
+                                <p><i>Grows banknotes.</i></p>
+                                <p id="farm">0 owned</p>
+                                <button id="price-farm" onclick="purchase('farm')">50$</button>
+                            </center>
+                        </td> 
+                        <td>
+                            <center>
+                                <h2>Mine (5$/s)</h2>
+                                <p><i>Mines banknotes.</i></p>
+                                <p id="mine">0 owned</p>
+                                <button id="price-mine" onclick="purchase('mine')">100$</button>
+                            </center>
+                        </td> 
+                        <td>
+                            <center>
+                                <h2>Factory (10$/s)</h2>
+                                <p><i>Produces banknotes.</i></p>
+                                <p id="factory">0 owned</p>
+                                <button id="price-factory" onclick="purchase('factory')">200$</button>
+                            </center>
+                        </td> 
+                        <td>
+                            <center>
+                                <h2>Local bank (20$/s)</h2>
+                                <p><i>Makes banknotes.</i></p>
+                                <p id="local">0 owned</p>
+                                <button id="price-local" onclick="purchase('local')">600$</button>
+                            </center>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td>
+                            <center>
+                                <h2>Temple (50$/s)</h2>
+                                <p><i>Discover banknotes.</i></p>
+                                <p id="temple">0 owned</p>
+                                <button id="price-temple" onclick="purchase('temple')">1000$</button>
+                            </center>
+                        </td> 
+                        <td>
+                            <center>
+                                <h2>City bank (75$/s)</h2>
+                                <p><i>Makes banknotes quicker.</i></p>
+                                <p id="city">0 owned</p>
+                                <button id="price-city" onclick="purchase('city')">2000$</button>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <h2>Orphanage (100$/s)</h2>
+                                <p><i>People pay to adopt kids here.</i></p>
+                                <p id="orphanage">0 owned</p>
+                                <button id="price-orphanage" onclick="purchase('orphanage')">3000$</button>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <h2>Money printer (250$/s)</h2>
+                                <p><i>Prints banknotes. May or may not be illegal.</i></p>
+                                <p id="moneyPrinter">0 owned</p>
+                                <button id="price-moneyPrinter" onclick="purchase('moneyPrinter')">10000$</button>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <h2><i>[Wooden]</i> Money generator (300$/s)</h2>
+                                <p><i>Magically summons banknotes.</i></p>
+                                <p id="wooden">0 owned</p>
+                                <button id="price-wooden" onclick="purchase('wooden')">15000$</button>
+                            </center>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                                <h2><i>[Small]</i> Company (500$/s)</h2>
+                                <p><i>Founds a start-up company.</i></p>
+                                <p id="small">0 owned</p>
+                                <button id="price-small" onclick="purchase('small')">25000$</button>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <h2><i>[Stone]</i> Money generator (700$/s)</h2>
+                                <p><i>Magically summons more banknotes.</i></p>
+                                <p id="stone">0 owned</p>
+                                <button id="price-stone" onclick="purchase('stone')">50000$</button>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <h2><i>[Medium]</i> Company (1000$/s)</h2>
+                                <p><i>Founds a normal company.</i></p>
+                                <p id="medium">0 owned</p>
+                                <button id="price-medium" onclick="purchase('medium')">75000$</button>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <h2><i>[Metal]</i> Money generator (2000$/s)</h2>
+                                <p><i>Magically summons even more banknotes.</i></p>
+                                <p id="metal">0 owned</p>
+                                <button id="price-metal" onclick="purchase('metal')">100000$</button>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <h2>Country bank (2500$/s)</h2>
+                                <p><i>Starts a national bank.</i></p>
+                                <p id="country">0 owned</p>
+                                <button id="price-country" onclick="purchase('country')">125000$</button>
+                            </center>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                                <h2><i>[Large]</i> Company (5000$/s)</h2>
+                                <p><i>Starts a pretty big company.</i></p>
+                                <p id="large">0 owned</p>
+                                <button id="price-large" onclick="purchase('large')">150000$</button>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <h2><i>[Gold]</i> Money generator (8000$/s)</h2>
+                                <p><i>Magically summons an insane amount of banknotes.</i></p>
+                                <p id="gold">0 owned</p>
+                                <button id="price-gold" onclick="purchase('gold')">200000$</button>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <h2><i>[Diamond]</i> Money generator (13500$/s)</h2>
+                                <p><i>Magically summons an extremely large amount of banknotes.</i></p>
+                                <p id="diamond">0 owned</p>
+                                <button id="price-diamond" onclick="purchase('diamond')">400000$</button>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <h2>Huge company (25000$/s)</h2>
+                                <p><i>Starts a pretty large company.</i></p>
+                                <p id="huge">0 owned</p>
+                                <button id="price-huge" onclick="purchase('huge')">500000$</button>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <h2>[Platinum] Money generator (35000$/s)</h2>
+                                <p><i>Magically summons an ungodly amount of money.</i></p>
+                                <p id="platinum">0 owned</p>
+                                <button id="price-platinum" onclick="purchase('platinum')">800000$</button>
+                            </center>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                                <h2>Massive company (50000$/s)</h2>
+                                <p><i>Starts a gargantuan company. Like a Google-size company.</i></p>
+                                <p id="massive">0 owned</p>
+                                <button id="price-massive" onclick="purchase('massive')">1000000$</button>
+                            </center>
+                        </td>
+                    </tr>
+                </center>
+            </table>
+        </center>
+    <script src="game.js"></script>
+</body>
+</html>
